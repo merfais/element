@@ -22,11 +22,7 @@
       },
       type: String,
       size: String,
-      splitButton: Boolean,
-      hideOnClick: {
-        type: Boolean,
-        default: true
-      }
+      splitButton: Boolean
     },
 
     data() {
@@ -82,9 +78,7 @@
         }
       },
       handleMenuItemClick(command, instance) {
-        if (this.hideOnClick) {
-          this.visible = false;
-        }
+        this.visible = false;
         this.$emit('command', command, instance);
       }
     },

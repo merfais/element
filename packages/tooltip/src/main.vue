@@ -10,7 +10,7 @@
     <transition :name="transition" @after-leave="doDestroy">
       <div
         class="el-tooltip__popper"
-        :class="['is-' + effect, popperClass]"
+        :class="['is-' + effect]"
         ref="popper"
         v-show="!disabled && showPopper">
         <slot name="content"><div v-text="content"></div></slot>
@@ -38,7 +38,6 @@ export default {
       type: String,
       default: 'dark'
     },
-    popperClass: String,
     content: String,
     visibleArrow: {
       default: true

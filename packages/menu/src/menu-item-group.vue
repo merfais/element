@@ -14,26 +14,31 @@
         paddingLeft: 20
       };
     },
-    computed: {
-      levelPadding() {
-        let padding = 10;
-        let parent = this.$parent;
-        while (parent && parent.$options.componentName !== 'ElMenu') {
-          if (parent.$options.componentName === 'ElSubmenu') {
-            padding += 20;
+    methods: {
+      initPadding() {
+        var parent = this.$parent;
+        var level = 0;
+        var component = parent.$options.componentName;
+
+        while (component !== 'ElMenu') {
+          if (component === 'ElSubmenu') {
+            level++;
           }
           parent = parent.$parent;
+          component = parent.$options.componentName;
         }
-        padding === 10 && (padding = 20);
-        return padding;
+        this.paddingLeft += level * 10;
       }
+    },
+    mounted() {
+      this.initPadding();
     }
   };
 </script>
 
 <template>
   <li class="el-menu-item-group">
-    <div class="el-menu-item-group__title" :style="{paddingLeft: levelPadding + 'px'}">
+    <div class="el-menu-item-group__title" :style="{'padding-left': paddingLeft + 'px'}">
       <template v-if="!$slots.title">{{title}}</template>
       <slot v-else name="title"></slot>
     </div>

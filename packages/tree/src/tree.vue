@@ -33,10 +33,6 @@
       nodeKey: String,
       checkStrictly: Boolean,
       defaultExpandAll: Boolean,
-      expandOnClickNode: {
-        type: Boolean,
-        default: true
-      },
       autoExpandParent: {
         type: Boolean,
         default: true

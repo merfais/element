@@ -55,7 +55,7 @@ export default {
       pager: <pager currentPage={ this.internalCurrentPage } pageCount={ this.internalPageCount } on-change={ this.handleCurrentChange }></pager>,
       next: <next></next>,
       sizes: <sizes pageSizes={ this.pageSizes }></sizes>,
-      slot: <my-slot></my-slot>,
+      slot: <slot></slot>,
       total: <total></total>
     };
     const components = layout.split(',').map((item) => item.trim());
@@ -87,15 +87,6 @@ export default {
   },
 
   components: {
-    MySlot: {
-      render(h) {
-        return (
-          this.$parent.$slots.default
-          ? this.$parent.$slots.default[0]
-          : ''
-        );
-      }
-    },
     Prev: {
       render(h) {
         return (

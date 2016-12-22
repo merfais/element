@@ -6,8 +6,7 @@
     <div
       v-show="visible"
       :style="{ width: width + 'px' }"
-      class="el-time-range-picker el-picker-panel"
-      :class="popperClass">
+      class="el-time-range-picker el-picker-panel">
       <div class="el-time-range-picker__content">
         <div class="el-time-range-picker__cell">
           <div class="el-time-range-picker__header">{{ t('el.datepicker.startTime') }}</div>
@@ -98,7 +97,6 @@
       const time = clacTime(this.$options.defaultValue);
 
       return {
-        popperClass: '',
         minTime: time.minTime,
         maxTime: time.maxTime,
         btnDisabled: isDisabled(time.minTime, time.maxTime),

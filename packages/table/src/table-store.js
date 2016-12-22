@@ -157,8 +157,6 @@ TableStore.prototype.mutations = {
     states.filteredData = data;
     states.data = sortData(data, states);
 
-    this.table.$emit('filter-change', filters);
-
     Vue.nextTick(() => this.table.updateScrollY());
   },
 

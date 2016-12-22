@@ -119,20 +119,10 @@ describe('Tree', () => {
 
   it('highlight current', done => {
     vm = getTreeVm(':props="defaultProps" highlight-current');
-    const firstNode = document.querySelector('.el-tree-node');
+    const firstNode = document.querySelector('.el-tree-node__content');
     firstNode.click();
     vm.$nextTick(() => {
-      expect(firstNode.className.indexOf('is-current') !== -1);
-      done();
-    });
-  });
-
-  it('expandOnNodeClick', done => {
-    vm = getTreeVm(':props="defaultProps" :expand-on-node-click="false"');
-    const firstNode = document.querySelector('.el-tree-node');
-    firstNode.click();
-    vm.$nextTick(() => {
-      expect(firstNode.className.indexOf('is-expanded') === -1);
+      expect(getComputedStyle(firstNode)['background-color']).to.equal('rgb(239, 247, 255)');
       done();
     });
   });

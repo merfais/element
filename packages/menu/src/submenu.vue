@@ -6,13 +6,14 @@
       'is-opened': opened
     }"
   >
-    <div class="el-submenu__title" ref="submenu-title" :style="paddingStyle">
+    <div class="el-submenu__title" ref="submenu-title">
+
       <slot name="title"></slot>
       <i :class="{
-        'el-submenu__icon-arrow': true,
-        'el-icon-arrow-down': rootMenu.mode === 'vertical',
-        'el-icon-caret-bottom': rootMenu.mode === 'horizontal'
-      }">
+          'el-submenu__icon-arrow': true,
+          'el-icon-arrow-down': rootMenu.mode === 'vertical',
+          'el-icon-caret-bottom': rootMenu.mode === 'horizontal'
+        }">
       </i>
     </div>
     <transition :name="rootMenu.mode === 'horizontal' ? 'el-zoom-in-top' : ''">

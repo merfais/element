@@ -37,7 +37,6 @@ describe('Select', () => {
             v-model="value"
             :multiple="multiple"
             :multiple-limit="multipleLimit"
-            :popper-class="popperClass"
             :clearable="clearable"
             :filterable="filterable"
             :allow-create="allowCreate"
@@ -63,7 +62,6 @@ describe('Select', () => {
           clearable: configs.clearable,
           filterable: configs.filterable,
           allowCreate: configs.allowCreate,
-          popperClass: configs.popperClass,
           loading: false,
           filterMethod: configs.filterMethod && configs.filterMethod(this),
           remote: configs.remote,
@@ -96,12 +94,6 @@ describe('Select', () => {
       return text === vm.options[index].label;
     });
     expect(result).to.true;
-  });
-
-  it('custom dropdown class', () => {
-    vm = getSelectVm({ popperClass: 'custom-dropdown' });
-    const dropdown = vm.$el.querySelector('.el-select-dropdown');
-    expect(dropdown.classList.contains('custom-dropdown')).to.true;
   });
 
   it('default value', done => {
@@ -215,41 +207,6 @@ describe('Select', () => {
   it('disabled select', () => {
     vm = createTest(Select, { disabled: true }, true);
     expect(vm.$el.querySelector('.el-input').classList.contains('is-disabled')).to.true;
-  });
-
-  it('visible event', done => {
-    vm = createVue({
-      template: `
-        <div>
-          <el-select v-model="value" @visible-change="handleVisibleChange">
-            <el-option
-              v-for="item in options"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </div>
-      `,
-
-      data() {
-        return {
-          options: [],
-          value: '',
-          visible: ''
-        };
-      },
-
-      methods: {
-        handleVisibleChange(val) {
-          this.visible = val;
-        }
-      }
-    }, true);
-    vm.$children[0].visible = true;
-    setTimeout(() => {
-      expect(vm.visible).to.true;
-      done();
-    }, 50);
   });
 
   it('keyboard operations', done => {

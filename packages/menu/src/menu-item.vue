@@ -1,14 +1,3 @@
-<template>
-  <li class="el-menu-item"
-    :style="paddingStyle"
-    @click="handleClick"
-    :class="{
-      'is-active': active,
-      'is-disabled': disabled
-    }">
-    <slot></slot>
-  </li>
-</template>
 <script>
   import Menu from './menu-mixin';
   module.exports = {
@@ -52,3 +41,14 @@
     }
   };
 </script>
+
+<template>
+  <li class="el-menu-item"
+    @click="handleClick"
+    :class="{
+      'is-active': active,
+      'is-disabled': disabled
+    }">
+    <slot></slot>
+  </li>
+</template>

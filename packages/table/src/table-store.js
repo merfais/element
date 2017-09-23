@@ -18,10 +18,26 @@ const getKeysMap = function(array, rowKey) {
   return arrayMap;
 };
 
+const getSelectedRowIndex = function(states, row) {
+  let index = -1;
+  const selection = states.selection || [];
+  const rowKey = states.rowKey;
+  if (rowKey) {
+    const selectedMap = getKeysMap(selection, rowKey);
+    const info = selectedMap[row[rowKey]];
+    if (info) {
+      index = info.index;
+    }
+  } else {
+    index = selection.indexOf(row);
+  }
+  return index
+};
+
 const toggleRowSelection = function(states, row, selected) {
   let changed = false;
   const selection = states.selection;
-  const index = selection.indexOf(row);
+  const index = getSelectedRowIndex(states, row)
   if (typeof selected === 'undefined') {
     if (index === -1) {
       selection.push(row);
@@ -315,7 +331,7 @@ TableStore.prototype.updateColumns = function() {
 };
 
 TableStore.prototype.isSelected = function(row) {
-  return (this.states.selection || []).indexOf(row) > -1;
+  return getSelectedRowIndex(this.states, row) > -1;
 };
 
 TableStore.prototype.clearSelection = function() {
